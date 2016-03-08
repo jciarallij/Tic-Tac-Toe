@@ -17,23 +17,35 @@ body {
 	padding: 5% 0 5% 0;
 }
 
-#button {
+#game-header {
 	margin: auto;
 	text-align: center;
 	width: 480px;
 
 }
 
-button {
+#message {
 	width: 70%;
 	padding: 5% 5% 5% 5%;
 	color: white;
 	font-size: 40px;
-	background-color: red;
+	background-color: green;
 	border: none;
 	border-radius: 10px;
+	position: relative;
 }
 
+#replay {
+	clear: both;
+	width: 200px;
+	color: white;
+	font-size: 20px;
+	background-color: purple;
+	border: none;
+	border-radius: 10px;
+	margin-top: 20px;
+	display: none;
+}
 #ttt {
 	max-width: 660px;
 	padding-top: 50px;
@@ -52,53 +64,75 @@ button {
 
 }
 
-.a1 {
+#a1 {
 	border-bottom: 10px solid black;
 	border-right: 10px solid black;
 }
 
-.a2 {
+#a2 {
 	border-left: 10px solid black;
 	border-bottom: 10px solid black;
 	border-right: 10px solid black;
 }
 
-.a3 {
+#a3 {
 	border-left: 10px solid black;
 	border-bottom: 10px solid black;
 }
 
-.b1 {
+#b1 {
 	border-top: 10px solid black;
 	border-right: 10px solid black;
 	border-bottom: 10px solid black;
 }
 
-.b2 {
+#b2 {
 	border-top: 10px solid black;
 	border-right: 10px solid black;
 	border-bottom: 10px solid black;
 	border-left: 10px solid black;
 }
 
-.b3 {
+#b3 {
 	border-top: 10px solid black;
 	border-left: 10px solid black;
 	border-bottom: 10px solid black;
 }
 
-.c1 {
+#c1 {
 	border-top: 10px solid black;
 	border-right: 10px solid black;
 }
 
-.c2 {
+#c2 {
 	border-top: 10px solid black;
 	border-right: 10px solid black;
 	border-left: 10px solid black;
 }
 
-.c3 {
+#c3 {
 	border-top: 10px solid black;
 	border-left: 10px solid black;
 }
+
+#message.red {
+	background-color: #ff0000;
+}
+
+#message.player-1 {
+	background-color: green;
+}
+
+#message.player-2 {
+	background-color: blue;
+}
+
+.box.p2 {
+	color: red;
+}
+
+.winner {
+	background-color: green;
+
+}
+
