@@ -15,10 +15,10 @@ var winners =[
 var whosTurn = 1;
 var playerOneMarkings = [];
 var playerTwoMarkings = [];
+var buttonHeader = document.getElementById('message');
 
-
-function addSymbol(element) {                                        /////  ***** This ADD'S SYMBOLS ****** //////
-	var buttonHeader = document.getElementById('message');
+function addSymbol(element) {  /////  ***** This ADD'S SYMBOLS ****** //////
+	
 	if(element.innerHTML == '') { //This square is empty
 		if(whosTurn == 1) {
 			element.innerHTML = 'X';		
@@ -28,7 +28,10 @@ function addSymbol(element) {                                        /////  ****
 			element.classList.remove('empty');  //Get rid of class 'empty', and add who took the square.
 			element.classList.add('p1');  // adds an element to the array
 			playerOneMarkings.push(element.id);
+			// checkWin();
 
+			// If player chooses '1 Player'
+			// computersTurn();
 		}
 		else {
 			element.innerHTML = 'O';		// It has to be O's turn. Put an O in,
@@ -49,7 +52,21 @@ function addSymbol(element) {                                        /////  ****
 }
 
 
-
+// function computersTurn(){
+// 	//It has to be O's turn. Put an O in.
+// 	// Get a random, empty square.
+// 	var arrayOfEmptySquares = document.getElementsByClassName('empty');
+// 	var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
+// 	var element = arrayOfEmptySquares[randomEmptySquareIndex];
+// 	element.innerHTML = 'O';
+// 	whosTurn = 1;
+// 	gameHeader.innerHTML = "It is Player 1's turn";
+// 	gameHeader.className = 'player-one';
+// 	element.classList.remove('empty');
+// 	element.classList.add('p2');
+// 	playerTwoMarkings.push(element.id);	
+// 	checkWin();
+// }
 
 
 
@@ -65,6 +82,7 @@ function checkWin() {       /////  ***** This CHECKS this win ****** //////
 	
 	for (i=0; i<winners.length; i++){
 		rowCount = 0;
+		rowCountTwo = 0;
 		thisWinCombo = winners[i];
 		
 		for (j = 0; j < thisWinCombo.length; j++) { // Now, let's check if all the elements in the winners array, exist in the current player array.
@@ -72,58 +90,42 @@ function checkWin() {       /////  ***** This CHECKS this win ****** //////
 				rowCount++;
 
 			}
-			else if (playerTwoMarkings.indexOf(thisWinCombo[j]) > -1) {
-				rowCountTwo++;
-
-			}
-		}
 			if (rowCount === 3){
 				gameOver(thisWinCombo, 1);
+			}
+		}
+			if (playerTwoMarkings.indexOf(thisWinCombo[j]) > -1) {
+				rowCountTwo++;
+
+			
 
 			}
-			if (rowCountTwo === 3){
+			 if(rowCountTwo === 3){
 				gameOver(thisWinCombo, 2);
-				break;
-
-			}
+			}	break;
+	
 	}
 
 }
 
 
 function gameOver(combo,playerWinner) {
-	var buttonHeader = document.getElementById('message');
 	for(i=0; i<combo.length; i++){
 		document.getElementById(combo[i]).classList.add('winner');
 	}
-	if (playerWinner === 1) {
-		buttonHeader.innerHTML = "Player 1 WINS!";
-		buttonHeader.className = 'player-1';
-	}
-	else if {
-		buttonHeader.innerHTML = "Player 2 WINS!";
-		buttonHeader.className = 'player-2';
-	}
-	else {
-		buttonHeader.innerHTML = "Draw!";
-	}
+	buttonHeader.innerHTML = 'Player ' + playerWinner + ' , won the game!';
 }
+// 	var replay = document.getElementsByTagName("button");
+// 	for(i=0; i<buttons.length; i++){
+// 		buttons[i].disabled = true;
+
+// 		buttons[i].style.pointerEvents = 'none';
+// 	}
 
 
-
-// function computersTurn(){
-// 	var emptySquares = document.getElementByClassName('empty');
-// 	console.log(emptySquares);
-// 	var randomEmptyBox = Math.floor(Math.random() * emptySquares.length);
-// 	console.log(emptySquares[randomEmptyBox]);
-	
-
-
-// }
-
-
-
-
-
-
+// function resetGame() {
+// 	Clear Player Arrays
+// 	Clear innerHTML of emptySquares
+// 	Updates wins to counter for the winning playerOneMarkings
+// 	Undisable the boxes
 // }
