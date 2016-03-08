@@ -1,0 +1,104 @@
+body {
+	
+}
+
+#container {
+    max-width: 960px;
+	margin: auto;
+	background-color: white;
+	position: relative;
+}
+
+#header {
+	width: 960px;
+	float: left;
+	text-align: center;
+	font-size: 50px;
+	padding: 5% 0 5% 0;
+}
+
+#button {
+	margin: auto;
+	text-align: center;
+	width: 480px;
+
+}
+
+button {
+	width: 70%;
+	padding: 5% 5% 5% 5%;
+	color: white;
+	font-size: 40px;
+	background-color: red;
+	border: none;
+	border-radius: 10px;
+}
+
+#ttt {
+	max-width: 660px;
+	padding-top: 50px;
+	margin: auto;
+	
+}
+
+.box {
+	float: left;
+	width: 205px;
+	height: 200px;
+	margin: auto;
+	background-color: white;
+	font-size: 200px;
+	text-align: center;
+
+}
+
+.a1 {
+	border-bottom: 10px solid black;
+	border-right: 10px solid black;
+}
+
+.a2 {
+	border-left: 10px solid black;
+	border-bottom: 10px solid black;
+	border-right: 10px solid black;
+}
+
+.a3 {
+	border-left: 10px solid black;
+	border-bottom: 10px solid black;
+}
+
+.b1 {
+	border-top: 10px solid black;
+	border-right: 10px solid black;
+	border-bottom: 10px solid black;
+}
+
+.b2 {
+	border-top: 10px solid black;
+	border-right: 10px solid black;
+	border-bottom: 10px solid black;
+	border-left: 10px solid black;
+}
+
+.b3 {
+	border-top: 10px solid black;
+	border-left: 10px solid black;
+	border-bottom: 10px solid black;
+}
+
+.c1 {
+	border-top: 10px solid black;
+	border-right: 10px solid black;
+}
+
+.c2 {
+	border-top: 10px solid black;
+	border-right: 10px solid black;
+	border-left: 10px solid black;
+}
+
+.c3 {
+	border-top: 10px solid black;
+	border-left: 10px solid black;
+}
