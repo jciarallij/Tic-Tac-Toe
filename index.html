@@ -8,14 +8,23 @@
 </head>
 <body>
 
-	<div id="container">
+	<div id="game-wrapper">
 		<div id="header">
 			<h1>TIC TAC TOE!</h1>
 		</div>
+			
+		<div class="num-player">
+			<button id="player-one" onclick="onePlayer();">1 Player</button>
+			<button id="player-two" onclick="twoPlayer();">2 Player's</button>
+		</div>
+	
+		
+
 		<div id="game-header">
-			<button id="message">Player 1's Turn</button>
+			<button disabled="" id="message">Player 1's Turn</button>
 			<button id="replay" onclick="replayGame(this);">Play Again?</button>
 		</div>
+
 		<div id="ttt">
 			<div id="row1">
 				<div class="box empty" id="a1" onclick="addSymbol(this);"></div>
