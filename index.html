@@ -13,41 +13,41 @@
 			<h1>TIC TAC TOE!</h1>
 		</div>
 			
-		<div class="num-player">
-			<button id="player-one" onclick="onePlayer();">1 Player</button>
-			<button id="player-two" onclick="twoPlayer();">2 Player's</button>
-		</div>
-	
 		
+		<div id="ttt">
+			<div id="row1">
+				<div class="box empty" id="a1"></div>
+				<div class="box empty" id="a2"></div>
+				<div class="box empty" id="a3"></div>
+			</div>
+			<div id="row2">
+				<div class="box empty" id="b1"></div>
+				<div class="box empty" id="b2"></div>
+				<div class="box empty" id="b3"></div>
+			</div>
+			<div id="row3">
+				<div class="box empty" id="c1"></div>
+				<div class="box empty" id="c2"></div>
+				<div class="box empty" id="c3"></div>
+			</div>
+		</div>
 
 		<div id="game-header">
 			<button disabled="" id="message">Player 1's Turn</button>
-			<button id="replay" onclick="replayGame(this);">Play Again?</button>
+			<button id="replay">Play Again?</button>
 		</div>
 
-		<div id="ttt">
-			<div id="row1">
-				<div class="box empty" id="a1" onclick="addSymbol(this);"></div>
-				<div class="box empty" id="a2" onclick="addSymbol(this);"></div>
-				<div class="box empty" id="a3" onclick="addSymbol(this);"></div>
-			</div>
-			<div id="row2">
-				<div class="box empty" id="b1" onclick="addSymbol(this);"></div>
-				<div class="box empty" id="b2" onclick="addSymbol(this);"></div>
-				<div class="box empty" id="b3" onclick="addSymbol(this);"></div>
-			</div>
-			<div id="row3">
-				<div class="box empty" id="c1" onclick="addSymbol(this);"></div>
-				<div class="box empty" id="c2" onclick="addSymbol(this);"></div>
-				<div class="box empty" id="c3" onclick="addSymbol(this);"></div>
-			</div>
+		<div class="num-player">
+			<button id="player-two">2 Player's</button>
+			<button id="player-one">1 Player</button>
 		</div>
+
 	</div>
 
 
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>

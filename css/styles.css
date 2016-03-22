@@ -1,11 +1,13 @@
 body {
-	
+	background-color: black;
 }
+
+
 
 #game-wrapper {
     max-width: 960px;
 	margin: auto;
-	background-color: white;
+	background-color: transparent;
 	position: relative;
 }
 
@@ -20,19 +22,20 @@ body {
 #game-header {
 	margin: auto;
 	text-align: center;
-	width: 480px;
+	width: 350px;
 
 }
 
 #message {
 	width: 70%;
 	padding: 5% 5% 5% 5%;
-	color: white;
-	font-size: 40px;
-	background-color: green;
+	color: black;
+	font-size: 30px;
+	background-color: white;
 	border: none;
 	border-radius: 10px;
 	position: relative;
+	margin-top: 5%;
 }
 
 #replay {
@@ -47,73 +50,74 @@ body {
 	display: none;
 }
 #ttt {
-	max-width: 660px;
-	padding-top: 50px;
+	width: 600px;
+	height: 600px;
 	margin: auto;
 	
 }
 
 .box {
 	float: left;
-	width: 205px;
+	width: 198px;
 	height: 200px;
 	margin: auto;
-	background-color: white;
-	font-size: 200px;
+	background-color: transparent;
+	font-size: 180px;
 	text-align: center;
 	pointer-events: none;
+	color: white;
 
 }
 
 #a1 {
-	border-bottom: 10px solid black;
-	border-right: 10px solid black;
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
 }
 
 #a2 {
-	border-left: 10px solid black;
-	border-bottom: 10px solid black;
-	border-right: 10px solid black;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
 }
 
 #a3 {
-	border-left: 10px solid black;
-	border-bottom: 10px solid black;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
 }
 
 #b1 {
-	border-top: 10px solid black;
-	border-right: 10px solid black;
-	border-bottom: 10px solid black;
+	border-top: 1px solid white;
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
 }
 
 #b2 {
-	border-top: 10px solid black;
-	border-right: 10px solid black;
-	border-bottom: 10px solid black;
-	border-left: 10px solid black;
+	border-top: 1px solid white;
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
 }
 
 #b3 {
-	border-top: 10px solid black;
-	border-left: 10px solid black;
-	border-bottom: 10px solid black;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
 }
 
 #c1 {
-	border-top: 10px solid black;
-	border-right: 10px solid black;
+	border-top: 1px solid white;
+	border-right: 1px solid white;
 }
 
 #c2 {
-	border-top: 10px solid black;
-	border-right: 10px solid black;
-	border-left: 10px solid black;
+	border-top: 1px solid white;
+	border-right: 1px solid white;
+	border-left: 1px solid white;
 }
 
 #c3 {
-	border-top: 10px solid black;
-	border-left: 10px solid black;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
 }
 
 #message.red {
@@ -121,15 +125,15 @@ body {
 }
 
 #message.player-1 {
-	background-color: green;
+	background-color: white;
 }
 
 #message.player-2 {
-	background-color: blue;
+	background-color: gray;
 }
 
 .box.p2 {
-	color: red;
+	color: gray;
 }
 
 .winner {
@@ -140,13 +144,17 @@ body {
 .num-player button {
 	width: 120px;
 	padding: 5px 5px;
-	background-color: #ddd;
+	background-color: #white;
 	font-size: 18px;
 	border-radius: 10px;
 	color: black;
 	text-align: center;
+	float: right;
+	margin-right: 5px;
+
 }
 
 .winner2 {
-	background-color: yellow;
+	background-color: blue;
 }
+
