@@ -51,7 +51,7 @@ $(document).ready(function(){
 function onePlayer(){
 	computer = true;
 	playerMode = 1;
-	$('#message').html('Your Turn!');
+	$('#message').html('Your Turn! P1');
 	$('.box').css('pointer-events','auto');
 	$('player-one').prop('disabled',true);
 	$('player-two').prop('disabled',true);
@@ -62,7 +62,7 @@ function onePlayer(){
 function twoPlayer(){
 	computer = false;
 	playerMode = 2;
-	$('#message').html('Player 1\'s turn!');
+	$('#message').html('P1\'s Turn');
 	$('.box').css('pointer-events','auto');
 	$('player-one').prop('disabled',true);
 	$('player-two').prop('disabled',true);
@@ -71,15 +71,14 @@ function twoPlayer(){
 // ----------------------------------------- Add Symbols to board ------------------------------------
 
 function addSymbol(element){  
-	console.log(element)
 	if($(element).html() == '') { 
 		if(whosTurn == 1) {
 			$(element).html('X');		
 			whosTurn = 2;
-			$(gameHeader).html("Player 2's Turn");
-			$(gameHeader).addClass('player-2');
+			$(gameHeader).html("P2\'s Turn");
+			$('#message').css('background-color','gray');
+			$('#message').css('color','white');
 			$(element).removeClass('.empty');  
-			$(element).addClass('.p1'); 
 			playerOneMarkings.push($(element).attr('id'));
 			checkWin();
 			if(computer == true){
@@ -90,16 +89,18 @@ function addSymbol(element){
 		else {
 			$(element).html('O');		
 			whosTurn = 1;
-			$(gameHeader).html("Player 1's Turn");
-			$(gameHeader).addClass('player-1');
-			$(element).removeClass('empty');
-			$(element).addClass('p2');         
+			$(gameHeader).html("P1\'s Turn");
+			$('#message').css('background-color','white');
+			$('#message').css('color','black');
+			$(element).removeClass('empty');      
 			playerTwoMarkings.push($(element).attr('id'));
 		}
 	}
 	else {
-		$(gameHeader).html("Box is taken");
-		$(gameHeader).addClass('error');
+		$(gameHeader).html("Box is taken!");
+		$('#message').css('background-color','red');
+		$('#message').css('color','white');
+		
 	}
 
 	checkWin();
@@ -114,10 +115,10 @@ function computersTurn(){
 	var element = arrayOfEmptySquares[randomEmptySquareIndex];
 	$(element).html('O');
 	whosTurn = 1;
-	$(gameHeader).html("It is Player 1's turn");
-	$(gameHeader).addClass('player-one');
+	$(gameHeader).html("P1 Turn");
+	$('#message').css('background-color','white');
+	$('#message').css('color','black');
 	$(element).removeClass('empty');
-	$(element).addClass('p2');
 	playerTwoMarkings.push($(element).attr('id'));
 	checkWin();
 }
@@ -163,27 +164,33 @@ function checkWin() {
 function gameOver(combo, playerWhoWon){
 	for(i=0; i<combo.length; i++){
 		document.getElementById(combo[i]).classList.add('winner');
-	}
-	for(i=0; i<combo.length; i++){
+	} if (playerWhoWon == 2){
+		for(i=0; i<combo.length; i++){
+		document.getElementById(combo[i]).classList.add('winner-two');
+		$('#message').css('background-color','blue');
+		} 
 		
-	}
-
-	$(gameHeader).html('Player ' + playerWhoWon + ' , won the game!');
-
+		} else {
+			$('#message').css('background-color','green');
+		}
+	
 	var buttons = document.getElementsByTagName("button");
 	for(i=0; i<buttons.length; i++){
 		buttons[i].disabled = true;
+		$(gameHeader).html('P' + playerWhoWon + ' , Won!');
 	}
+	
+
+	// if(playerWhoWon==1){
+	// 	winsPlayerOne++;
+	// }else{
+	// 	winsPlayerTwo++;
+	// }
 	$('#play-again-button').removeAttr('disabled');
-
-	if(playerWhoWon==1){
-		winsPlayerOne++;
-	}else{
-		winsPlayerTwo++;
-	}
-
 	$('#play-again-button').disabled = false;
 	$('#play-again').css('display', 'block');
+	$('#message').css('color','white');
+
 }
 
 
@@ -198,16 +205,17 @@ function resetGame(){
 		$(this).html('');
 		$(this).addClass('empty');
 		$(this).removeClass('winner');
+		$(this).removeClass('winner-two');
 	})
-
-	// $('#one-player').removeAttr('disabled');
-	// $('#two-players').removeAttr('disabled');
 
 	$('#play-again').css('display','none');
 	$('.box').css('pointer-events','none');
 	$('#player-one').prop('disabled',false);
 	$('#player-two').prop('disabled',false);
-	$('#message').html('Next Game! Choose');
+	$('#message').html('Choose Mode');
+	$('#message').css('background-color','white');
+	$('#message').css('color','black');
+
 
 	
 }

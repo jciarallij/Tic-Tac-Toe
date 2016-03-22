@@ -124,29 +124,14 @@ body {
 	border-left: 1px solid white;
 }
 
-#message.error {
-	background-color: #ff0000;
-}
-
-#message.player-1 {
-	background-color: white;
-}
-
-#message.player-2 {
-	background-color: gray;
-}
-
-.box.p2 {
+.winner {
+	background-color: green;
 	color: white;
 }
 
-.box.p1 {
-	color: green;
-}
-
-.winner {
-	background-color: green;
-
+.winner-two {
+	background-color: blue;
+	color: white;
 }
 
 .num-player button {
@@ -162,7 +147,5 @@ body {
 
 }
 
-.winner2 {
-	background-color: blue;
-}
+
 
