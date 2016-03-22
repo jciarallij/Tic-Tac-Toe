@@ -1,17 +1,17 @@
 // ----------------------------------------- Declaring Global Variables --------------------------------
 
 var winners =[
-// horizontal Answers
+// Horizontal Combos
 	['a1', 'a2', 'a3'],
 	['b1', 'b2', 'b3'],
 	['c1', 'c2', 'c3'],
-// vertical Answers
+// Vertical Combos
 	['a1', 'b1', 'c1'],
 	['a2', 'b2', 'c2'],
 	['a3', 'b3', 'c3'],
-// diagonal Answers
+// Diagonal Combos
 	['a1', 'b2', 'c3'],
-	['c1', 'b2', 'a3'],
+	['c1', 'b2', 'a3']
 ];
 var whosTurn = 1;
 var playerOneMarkings = [];
@@ -19,6 +19,8 @@ var playerTwoMarkings = [];
 var gameHeader = $('#message');
 var playerMode;
 var computer;
+var winsPlayerOne;
+var winsPlayerTwo;
 
 // ----------------------------------------- Click Function ---------------------------------------------
 
@@ -26,21 +28,20 @@ $(document).ready(function(){
 	$('button').click(function(){
 		var clickedButton = ($(this).attr('id'));
 		if(clickedButton == 'player-one'){
-			// console.log('#player-one');
+			
 			onePlayer();
 		}else if(clickedButton == 'player-two'){
-			// console.log('#player-two');
+			
 			twoPlayer();
-		}else if(clickedButton == 'replay'){
-			replay();
+		}else if(clickedButton == 'play-again-button'){
+			resetGame();
 		
 		};
 	});
 
 	$('.box').click(function(){
-			// console.log(this);
-			addSymbol(this);
-	})
+			addSymbol($(this));
+	});
 
 
 });
@@ -49,13 +50,11 @@ $(document).ready(function(){
 
 function onePlayer(){
 	computer = true;
-	var playerMode = 1;
-	var box = $('.box');
-	for(i=0; i<box.length; i++) {
-		box[i].style.pointerEvents = 'auto';
-	}
-	// $('player-one').prop('disabled',true);
-	// $('player-two').prop('disabled',true);
+	playerMode = 1;
+	$('#message').html('Your Turn!');
+	$('.box').css('pointer-events','auto');
+	$('player-one').prop('disabled',true);
+	$('player-two').prop('disabled',true);
 }
 
 // ----------------------------------------- Two Players ---------------------------------------------
@@ -63,28 +62,25 @@ function onePlayer(){
 function twoPlayer(){
 	computer = false;
 	playerMode = 2;
-	$('#message').innerHTML = 'Player 1\'s turn!';
-	var box = $('.box');
-	for(i=0; i<box.length; i++) {
-		box[i].style.pointerEvents = 'auto';
-	}
-	// $('player-one').prop('disabled',true);
-	// $('player-two').prop('disabled',true);
+	$('#message').html('Player 1\'s turn!');
+	$('.box').css('pointer-events','auto');
+	$('player-one').prop('disabled',true);
+	$('player-two').prop('disabled',true);
 }
 
 // ----------------------------------------- Add Symbols to board ------------------------------------
 
 function addSymbol(element){  
 	console.log(element)
-	if(element.innerHTML == '') { 
+	if($(element).html() == '') { 
 		if(whosTurn == 1) {
-			element.innerHTML ='X';		
+			$(element).html('X');		
 			whosTurn = 2;
-			gameHeader.html("Player 2's Turn");
-			gameHeader.addClass('player-2');
+			$(gameHeader).html("Player 2's Turn");
+			$(gameHeader).addClass('player-2');
 			$(element).removeClass('.empty');  
 			$(element).addClass('.p1'); 
-			playerOneMarkings.push(element.id);
+			playerOneMarkings.push($(element).attr('id'));
 			checkWin();
 			if(computer == true){
 				computersTurn();
@@ -92,18 +88,18 @@ function addSymbol(element){
 		
 		}
 		else {
-			element.innerHTML ='O';		
+			$(element).html('O');		
 			whosTurn = 1;
-			gameHeader.html("Player 1's Turn");
-			gameHeader.addClass('player-1');
+			$(gameHeader).html("Player 1's Turn");
+			$(gameHeader).addClass('player-1');
 			$(element).removeClass('empty');
-			$(element).addClass(' p2');         
-			playerTwoMarkings.push(element.id);	
+			$(element).addClass('p2');         
+			playerTwoMarkings.push($(element).attr('id'));
 		}
 	}
 	else {
-		gameHeader.html("Box is taken");
-		gameHeader.addClass('red');
+		$(gameHeader).html("Box is taken");
+		$(gameHeader).addClass('error');
 	}
 
 	checkWin();
@@ -112,18 +108,17 @@ function addSymbol(element){
 // ----------------------------------------- Computers Turn ----------------------------------------
 
 function computersTurn(){
-	//It has to be O's turn. Put an O in.
-	// Get a random, empty square.
+	
 	var arrayOfEmptySquares = $('.empty');
 	var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
 	var element = arrayOfEmptySquares[randomEmptySquareIndex];
-	element.innerHTML = 'O';
+	$(element).html('O');
 	whosTurn = 1;
-	gameHeader.innerHTML = "It is Player 1's turn";
-	gameHeader.addClass('player-one');
+	$(gameHeader).html("It is Player 1's turn");
+	$(gameHeader).addClass('player-one');
 	$(element).removeClass('empty');
 	$(element).addClass('p2');
-	playerTwoMarkings.push(element.id);	
+	playerTwoMarkings.push($(element).attr('id'));
 	checkWin();
 }
 
@@ -133,6 +128,7 @@ function checkWin() {
 	var rowCount = 0;  
 	var rowCountTwo = 0;
 	var thisWinCombo;
+
 	for (var i=0; i<winners.length; i++){
 		rowCount = 0;
 		rowCountTwo = 0;
@@ -149,10 +145,12 @@ function checkWin() {
 		}
 		if (rowCount === 3){
 			gameOver(thisWinCombo, 1);
+			$('.box').css('pointer-events','none');
 			break;
 		}
 		 if(rowCountTwo === 3){
 			gameOver(thisWinCombo, 2);
+			$('.box').css('pointer-events','none');
 			break;
 		}
 
@@ -162,18 +160,61 @@ function checkWin() {
 
 // ----------------------------------------- Game Over ---------------------------------------------
 
-function gameOver(combo,playerWinner) {
-	for(i=0; i<$(combo).length; i++){
-		$(combo[i]).addClass('winner');
+function gameOver(combo, playerWhoWon){
+	for(i=0; i<combo.length; i++){
+		document.getElementById(combo[i]).classList.add('winner');
 	}
-	if(playerWinner == 2){
-		gameHeader.addClass('player-2');
-		// $('#replay').show();		
+	for(i=0; i<combo.length; i++){
+		
 	}
-	gameHeader.innerHTML = 'Player ' + playerWinner + ' , won the game!';
-	// $('#replay').show();	
+
+	$(gameHeader).html('Player ' + playerWhoWon + ' , won the game!');
+
+	var buttons = document.getElementsByTagName("button");
+	for(i=0; i<buttons.length; i++){
+		buttons[i].disabled = true;
+	}
+	$('#play-again-button').removeAttr('disabled');
+
+	if(playerWhoWon==1){
+		winsPlayerOne++;
+	}else{
+		winsPlayerTwo++;
+	}
+
+	$('#play-again-button').disabled = false;
+	$('#play-again').css('display', 'block');
 }
 
-// ----------------------------------------- Score Function ----------------------------------------
+
+// ----------------------------------------- Reset Function ----------------------------------------
+
+function resetGame(){
+	
+	playerOneMarkings = [];
+	playerTwoMarkings = [];
+	
+	$(".box").each(function(){
+		$(this).html('');
+		$(this).addClass('empty');
+		$(this).removeClass('winner');
+	})
+
+	// $('#one-player').removeAttr('disabled');
+	// $('#two-players').removeAttr('disabled');
+
+	$('#play-again').css('display','none');
+	$('.box').css('pointer-events','none');
+	$('#player-one').prop('disabled',false);
+	$('#player-two').prop('disabled',false);
+	$('#message').html('Next Game! Choose');
+
+	
+}
+
+// var boxWidth = $('#a1').width();
+// $('.box').each(function(){
+// 	$(this).css('height', boxWidth + 'px');
+// })
 
 // ----------------------------------------- Tie Function ------------------------------------------
